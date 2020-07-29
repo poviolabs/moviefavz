@@ -28,6 +28,7 @@ module.exports = {
         tabWidth: 2,
       },
     ],
+    'object-curly-spacing': ['error', 'always'],
   },
   plugins: ['react', 'prettier'],
 };

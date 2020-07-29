@@ -1,0 +1,14 @@
+{
+  "primary": "#db0000",
+  "primaryDark": "#831010",
+  "secondary": "#564d4d",
+  "dark": "#1d1d1d",
+  "text": "#7f8c8d",
+  "textSecondary": "#95a5a6",
+  "silver": "#bdc3c7",
+  "grey": "#d9d9d9",
+  "light": "#ffffff",
+  "success": "#2ecc71",
+  "warning": "#f1c40f",
+  "error": "#e74c3c"
+}
