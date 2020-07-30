@@ -1,11 +1,13 @@
 import { observable, computed, action, decorate, runInAction } from 'mobx';
 
 import { fetchSearchMovies } from '../api/omdbApiService';
+import { apiValidations } from '../utils';
+import { STATE_TYPES } from '../constants';
 
 class MoviesStore {
   movies = [];
-  state = 'pending'; // pending | done | error
-  searching = 'pending'; // pending | done | error
+  state = STATE_TYPES.inactive;
+  searching = STATE_TYPES.inactive;
   searchResults = [];
   searchNextPage = null;
   error = null;
@@ -17,18 +19,34 @@ class MoviesStore {
   }
 
   searchMovies = async ({ query, page }) => {
+    this.searching = STATE_TYPES.pending;
     try {
-      const { data, nextPage } = await fetchSearchMovies({ query, page });
-      runInAction(() => {
-        this.searchResults = [...this.searchResults, ...data];
-        this.searchNextPage = nextPage;
+      const { data, nextPage, status, error } = await fetchSearchMovies({
+        query,
+        page,
       });
+      if (apiValidations.validResponse(status)) {
+        runInAction(() => {
+          this.searchResults = data;
+          this.searchNextPage = nextPage;
+          this.searching = STATE_TYPES.done;
+        });
+      } else {
+        throw new Error(error);
+      }
     } catch (err) {
       console.error(err);
       runInAction(() => {
-        this.error = err;
+        this.error = err.message;
+        this.searching = STATE_TYPES.error;
       });
     }
+  };
+
+  removeErrors = () => {
+    this.searching = STATE_TYPES.inactive;
+    this.state = STATE_TYPES.inactive;
+    this.error = null;
   };
 }
 
@@ -43,6 +61,7 @@ decorate(MoviesStore, {
   favorites: observable,
   hasSearchResults: computed,
   searchMovies: action,
+  removeErrors: action,
 });
 
 export default MoviesStore;

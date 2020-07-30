@@ -4,10 +4,12 @@ import { observer } from 'mobx-react';
 
 import { useStores } from '../hooks';
 
-import { Typography, Layout } from 'antd';
+import { Typography, Layout, Alert } from 'antd';
 
 import { Banner, MoviesGrid } from '../components/ui';
 import { Container, Section } from '../components/layout';
+
+import { STATE_TYPES } from '../constants';
 
 // import homeBannerBg from '../static/images/home-banner-bg.jpg';
 import homeBannerBg from '../static/images/home-banner-bg-2.jpg';
@@ -25,6 +27,15 @@ const Home = () => {
       <Banner image={homeBannerBg} />
       <Content>
         <Container>
+          {moviesStore.searching === STATE_TYPES.error && (
+            <Alert
+              message={`Search error: ${moviesStore.error}`}
+              description="Try searching with different search query. Make sure that search query is at least 3 characters long."
+              type="error"
+              closable
+              onClose={moviesStore.removeErrors}
+            />
+          )}
           {moviesStore.hasSearchResults ? (
             <MoviesGrid
               movies={moviesStore.searchResults}
