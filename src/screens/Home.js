@@ -6,7 +6,7 @@ import { useStores } from '../hooks';
 
 import { Typography, Layout, Alert, Button, Space } from 'antd';
 
-import { Banner, MoviesGrid } from '../components/ui';
+import { Banner, MoviesGrid, MovieModal } from '../components/ui';
 import { Container, Section } from '../components/layout';
 
 import { STATE_TYPES } from '../constants';
@@ -18,6 +18,7 @@ const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 const Home = () => {
+  const [selectedMovie, setSelectedMovie] = React.useState(null);
   const { moviesStore } = useStores();
 
   const searchInProgress = React.useMemo(() => {
@@ -25,8 +26,21 @@ const Home = () => {
   }, [moviesStore.searching]);
 
   const handleMoviePress = (movieId) => {
-    console.log(movieId);
+    setSelectedMovie(movieId);
   };
+
+  React.useEffect(() => {
+    if (
+      selectedMovie &&
+      !Object.prototype.hasOwnProperty.call(
+        moviesStore.singleMoviesById,
+        selectedMovie
+      )
+    ) {
+      console.count('selected movie effect');
+      moviesStore.fetchMovieById({ id: selectedMovie });
+    }
+  }, [selectedMovie, moviesStore]);
 
   return (
     <>
@@ -80,6 +94,12 @@ const Home = () => {
           )}
         </Container>
       </Content>
+      <MovieModal
+        loading={moviesStore.state === STATE_TYPES.pending}
+        visible={!!selectedMovie}
+        movie={moviesStore.singleMoviesById[selectedMovie]}
+        onClose={() => setSelectedMovie(null)}
+      />
     </>
   );
 };

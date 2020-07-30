@@ -80,7 +80,7 @@ export const fetchMovieById = async ({ id }) => {
         data: data,
       };
     } else {
-      return { status: Status, data: [], error: Error };
+      return { status: Status, data: null, error: Error };
     }
   } catch (err) {
     console.log('Request for searchMovies has failed.', err.message);
