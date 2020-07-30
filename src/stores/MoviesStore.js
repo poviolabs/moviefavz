@@ -6,6 +6,7 @@ import { STATE_TYPES } from '../constants';
 
 class MoviesStore {
   movies = [];
+  query = '';
   state = STATE_TYPES.inactive;
   searching = STATE_TYPES.inactive;
   searchResults = [];
@@ -18,16 +19,41 @@ class MoviesStore {
     return this.searchResults.length > 0;
   }
 
-  searchMovies = async ({ query, page }) => {
+  searchMovies = async ({ query }) => {
     this.searching = STATE_TYPES.pending;
     try {
       const { data, nextPage, status, error } = await fetchSearchMovies({
         query,
-        page,
       });
       if (apiValidations.validResponse(status)) {
         runInAction(() => {
+          this.query = query;
           this.searchResults = data;
+          this.searchNextPage = nextPage;
+          this.searching = STATE_TYPES.done;
+        });
+      } else {
+        throw new Error(error);
+      }
+    } catch (err) {
+      console.error(err);
+      runInAction(() => {
+        this.error = err.message;
+        this.searching = STATE_TYPES.error;
+      });
+    }
+  };
+
+  searchMoviesNextPage = async () => {
+    this.searching = STATE_TYPES.pending;
+    try {
+      const { data, nextPage, status, error } = await fetchSearchMovies({
+        query: this.query,
+        page: this.searchNextPage,
+      });
+      if (apiValidations.validResponse(status)) {
+        runInAction(() => {
+          this.searchResults = [...this.searchResults, ...data];
           this.searchNextPage = nextPage;
           this.searching = STATE_TYPES.done;
         });
@@ -61,6 +87,7 @@ decorate(MoviesStore, {
   favorites: observable,
   hasSearchResults: computed,
   searchMovies: action,
+  searchMoviesNextPage: action,
   removeErrors: action,
 });
 

@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 
 import { useStores } from '../hooks';
 
-import { Typography, Layout, Alert } from 'antd';
+import { Typography, Layout, Alert, Button, Space } from 'antd';
 
 import { Banner, MoviesGrid } from '../components/ui';
 import { Container, Section } from '../components/layout';
@@ -19,9 +19,15 @@ const { Title, Paragraph } = Typography;
 
 const Home = () => {
   const { moviesStore } = useStores();
+
+  const searchInProgress = React.useMemo(() => {
+    return moviesStore.searching === STATE_TYPES.pending;
+  }, [moviesStore.searching]);
+
   const handleMoviePress = (movieId) => {
     console.log(movieId);
   };
+
   return (
     <>
       <Banner image={homeBannerBg} />
@@ -37,10 +43,23 @@ const Home = () => {
             />
           )}
           {moviesStore.hasSearchResults ? (
-            <MoviesGrid
-              movies={moviesStore.searchResults}
-              onMoviePress={handleMoviePress}
-            />
+            <Space direction="vertical" size="large">
+              <MoviesGrid
+                movies={moviesStore.searchResults}
+                onMoviePress={handleMoviePress}
+              />
+              {moviesStore.searchNextPage !== null && (
+                <Button
+                  size="large"
+                  type="primary"
+                  loading={searchInProgress}
+                  onClick={moviesStore.searchMoviesNextPage}
+                  block
+                >
+                  {searchInProgress ? 'Loading' : 'Load more results'}
+                </Button>
+              )}
+            </Space>
           ) : (
             <>
               <Section>
