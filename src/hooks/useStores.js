@@ -1,5 +1,5 @@
 import React from 'react';
-import storesContext from '../store';
+import storesContext from '../stores';
 
 const useStores = () => React.useContext(storesContext);
 

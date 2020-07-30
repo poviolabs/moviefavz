@@ -1,16 +1,17 @@
 import axios from 'axios';
+import { API } from '../constants';
 
-const API_BASE_URL = 'http://www.omdbapi.com';
-
-axios.defaults.baseURL = API_BASE_URL;
+axios.defaults.baseURL = API.baseUrl;
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
-const fetchApi = async ({ url, method = 'GET', reqData = {} }) => {
+const fetchApi = async ({ url, method = 'GET', params = {} }) => {
   try {
     const apiKey = process.env.REACT_APP_OMDB_API_KEY || null;
+
     if (apiKey) {
       const options = { url, method };
-      options.params = { ...reqData, apiKey };
+      options.params = { ...params, apiKey };
+
       try {
         const { data, status } = await axios.request(options);
         const parsedResponse = data.Response
@@ -22,7 +23,7 @@ const fetchApi = async ({ url, method = 'GET', reqData = {} }) => {
 
         return data;
       } catch (err) {
-        console.error('API request failed', err.message);
+        throw new Error(`API request failed: ${err.messagee}`);
       }
     } else {
       throw new Error(
@@ -30,7 +31,7 @@ const fetchApi = async ({ url, method = 'GET', reqData = {} }) => {
       );
     }
   } catch (err) {
-    console.error('Something went wrong', err);
+    console.error(err);
   }
 };
 
@@ -41,7 +42,12 @@ export const fetchSearchMovies = async ({
 }) => {
   try {
     const { Search, Response, Status, totalResults, Error } = await fetchApi({
-      url: `/?s=${query}*&t=${type}&page=${page}`,
+      url: `/`,
+      params: {
+        s: `${query}*`,
+        t: type,
+        page: page,
+      },
     });
     const hasNextPage =
       totalResults && parseInt(totalResults) > Search.length * page
@@ -66,7 +72,10 @@ export const fetchSearchMovies = async ({
 export const fetchMovieById = async ({ id }) => {
   try {
     const { Response, Status, Error, ...data } = await fetchApi({
-      url: `/?i=${id}`,
+      url: `/`,
+      params: {
+        i: id,
+      },
     });
 
     if (Response) {

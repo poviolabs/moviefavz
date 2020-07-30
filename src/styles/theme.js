@@ -5,6 +5,9 @@ const theme = {
   fonts: {
     primary: 'Poppins',
   },
+  layouts: {
+    bannerHeight: '55vh',
+  },
 };
 
 export default theme;
