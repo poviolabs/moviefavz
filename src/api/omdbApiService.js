@@ -49,17 +49,13 @@ export const fetchSearchMovies = async ({
         page: page,
       },
     });
-    const hasNextPage =
-      totalResults && parseInt(totalResults) > Search.length * page
-        ? true
-        : false;
 
     if (Response) {
       return {
         status: Status,
         data: [...Search],
-        nextPage: hasNextPage ? page + 1 : null,
-        prevPage: page !== 1 ? page - 1 : null,
+        totalResults: parseInt(totalResults),
+        nextPage: page + 1,
       };
     } else {
       return { status: Status, data: [], error: Error };

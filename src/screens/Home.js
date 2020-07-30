@@ -48,7 +48,7 @@ const Home = () => {
                 movies={moviesStore.searchResults}
                 onMoviePress={handleMoviePress}
               />
-              {moviesStore.searchNextPage !== null && (
+              {moviesStore.hasNextPage && (
                 <Button
                   size="large"
                   type="primary"

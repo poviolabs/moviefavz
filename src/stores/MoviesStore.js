@@ -7,6 +7,7 @@ import { STATE_TYPES } from '../constants';
 class MoviesStore {
   movies = [];
   query = '';
+  totalResults = null;
   state = STATE_TYPES.inactive;
   searching = STATE_TYPES.inactive;
   searchResults = [];
@@ -19,16 +20,30 @@ class MoviesStore {
     return this.searchResults.length > 0;
   }
 
+  get hasNextPage() {
+    return this.totalResults >
+      this.searchResults.length * (this.searchNextPage - 1)
+      ? true
+      : false;
+  }
+
   searchMovies = async ({ query }) => {
     this.searching = STATE_TYPES.pending;
     try {
-      const { data, nextPage, status, error } = await fetchSearchMovies({
+      const {
+        data,
+        nextPage,
+        totalResults,
+        status,
+        error,
+      } = await fetchSearchMovies({
         query,
       });
       if (apiValidations.validResponse(status)) {
         runInAction(() => {
           this.query = query;
           this.searchResults = data;
+          this.totalResults = totalResults;
           this.searchNextPage = nextPage;
           this.searching = STATE_TYPES.done;
         });
@@ -53,7 +68,7 @@ class MoviesStore {
       });
       if (apiValidations.validResponse(status)) {
         runInAction(() => {
-          this.searchResults = [...this.searchResults, ...data];
+          this.searchResults.push(...data);
           this.searchNextPage = nextPage;
           this.searching = STATE_TYPES.done;
         });
@@ -85,6 +100,7 @@ decorate(MoviesStore, {
   error: observable,
   latestFindings: observable,
   favorites: observable,
+  hasNextPage: computed,
   hasSearchResults: computed,
   searchMovies: action,
   searchMoviesNextPage: action,
