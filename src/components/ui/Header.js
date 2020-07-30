@@ -10,6 +10,11 @@ const StyledHeader = styled(Layout.Header)`
   background-color: ${({ theme }) => theme.colors.light};
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 const StyledLink = styled(NavLink)`

@@ -10,7 +10,7 @@ import MovieImage from './MovieImage';
 const { Meta } = Card;
 
 const StyledCard = styled(Card)`
-  width: 100%;
+  flex: 1;
 
   .ant-card-cover {
     height: 260px;
@@ -20,6 +20,12 @@ const StyledCard = styled(Card)`
       width: 100%;
       height: 100%;
     }
+  }
+
+  .ant-card-meta-description {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 `;
 

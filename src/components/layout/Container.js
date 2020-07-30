@@ -7,6 +7,10 @@ const StyledContainer = styled.div`
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 50px;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 16px;
+  }
 `;
 
 const Container = ({ children, ...props }) => {

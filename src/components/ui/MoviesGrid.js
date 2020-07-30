@@ -7,9 +7,20 @@ import MovieCard from './MovieCard';
 
 const MoviesGrid = ({ movies, onMoviePress }) => {
   return (
-    <Row gutter={[24, 16]} type="flex">
+    <Row
+      gutter={[
+        { xs: 16, sm: 16 },
+        { xs: 12, sm: 24 },
+      ]}
+      type="flex"
+    >
       {movies.map((movie) => (
-        <Col key={movie.imdbID} span={6}>
+        <Col
+          key={movie.imdbID}
+          xs={{ span: 12 }}
+          sm={{ span: 8 }}
+          lg={{ span: 6 }}
+        >
           <MovieCard {...movie} onPress={onMoviePress} />
         </Col>
       ))}

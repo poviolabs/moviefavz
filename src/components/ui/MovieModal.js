@@ -38,7 +38,7 @@ const MovieModal = ({ visible, loading, movie, onClose }) => {
         movie && (
           <>
             <Row gutter={16}>
-              <Col span={10}>
+              <Col sm={{ span: 24 }} lg={{ span: 10 }}>
                 <StyledPosterImage poster={movie.Poster} title={movie.Title} />
                 <Button
                   type="primary"
@@ -62,8 +62,9 @@ const MovieModal = ({ visible, loading, movie, onClose }) => {
                 >
                   View on IMDB
                 </Button>
+                <Divider />
               </Col>
-              <Col span={14}>
+              <Col sm={{ span: 24 }} lg={{ span: 14 }}>
                 <Title level={3}>
                   {movie.Title} ({movie.Year})
                 </Title>
