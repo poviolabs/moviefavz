@@ -9,7 +9,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import { Typography, Layout, Alert } from 'antd';
 
-import { Banner, MoviesGrid, LoginButton } from '../components/ui';
+import { Banner, MoviesGrid, LoginButton, Loader } from '../components/ui';
 import { Container, Section } from '../components/layout';
 
 import { STATE_TYPES } from '../constants';
@@ -52,7 +52,7 @@ const Home = () => {
                 pageStart={1}
                 loadMore={handleNewPageLoad}
                 hasMore={moviesStore.hasNextPage}
-                loader={<p key={0}>loading...</p>}
+                loader={<Loader key={0} />}
               >
                 <MoviesGrid movies={moviesStore.searchResults} />
               </InfiniteScroll>
