@@ -5,7 +5,9 @@ import { observer } from 'mobx-react';
 import { useStores } from '../hooks';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { Typography, Layout, Alert, Button } from 'antd';
+import InfiniteScroll from 'react-infinite-scroller';
+
+import { Typography, Layout, Alert } from 'antd';
 
 import { Banner, MoviesGrid, LoginButton } from '../components/ui';
 import { Container, Section } from '../components/layout';
@@ -22,13 +24,13 @@ const Home = () => {
   const { moviesStore } = useStores();
   const { isAuthenticated } = useAuth0();
 
-  const searchInProgress = React.useMemo(() => {
-    return moviesStore.searching === STATE_TYPES.pending;
-  }, [moviesStore.searching]);
-
   const latestFavorites = React.useMemo(() => {
     return moviesStore.favoritesPreviews.slice(0, 4);
   }, [moviesStore.favoritesPreviews]);
+
+  const handleNewPageLoad = (page) => {
+    moviesStore.searchMoviesNextPage({ page });
+  };
 
   return (
     <>
@@ -46,18 +48,14 @@ const Home = () => {
           )}
           {moviesStore.hasSearchResults ? (
             <>
-              <MoviesGrid movies={moviesStore.searchResults} />
-              {moviesStore.hasNextPage && (
-                <Button
-                  size="large"
-                  type="primary"
-                  loading={searchInProgress}
-                  onClick={moviesStore.searchMoviesNextPage}
-                  block
-                >
-                  {searchInProgress ? 'Loading' : 'Load more results'}
-                </Button>
-              )}
+              <InfiniteScroll
+                pageStart={1}
+                loadMore={handleNewPageLoad}
+                hasMore={moviesStore.hasNextPage}
+                loader={<p key={0}>loading...</p>}
+              >
+                <MoviesGrid movies={moviesStore.searchResults} />
+              </InfiniteScroll>
             </>
           ) : (
             <>

@@ -82,12 +82,12 @@ class MoviesStore {
     }
   };
 
-  searchMoviesNextPage = async () => {
+  searchMoviesNextPage = async ({ page }) => {
     this.searching = STATE_TYPES.pending;
     try {
       const { data, nextPage, status, error } = await fetchSearchMovies({
         query: this.query,
-        page: this.searchNextPage,
+        page,
       });
       if (apiValidations.validResponse(status)) {
         runInAction(() => {
