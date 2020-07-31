@@ -1,30 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Row, Col } from 'antd';
+import { Grid } from '../layout';
 
 import MovieCard from './MovieCard';
 
 const MoviesGrid = ({ movies, onMoviePress }) => {
   return (
-    <Row
-      gutter={[
-        { xs: 16, sm: 16 },
-        { xs: 12, sm: 24 },
-      ]}
-      type="flex"
-    >
+    <Grid minColWidth={{ sm: '160px', lg: '215px' }}>
       {movies.map((movie) => (
-        <Col
-          key={movie.imdbID}
-          xs={{ span: 12 }}
-          sm={{ span: 8 }}
-          lg={{ span: 6 }}
-        >
-          <MovieCard {...movie} onPress={onMoviePress} />
-        </Col>
+        <MovieCard key={movie.imdbID} onPress={onMoviePress} {...movie} />
       ))}
-    </Row>
+    </Grid>
   );
 };
 

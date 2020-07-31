@@ -10,10 +10,14 @@ import MovieImage from './MovieImage';
 const { Meta } = Card;
 
 const StyledCard = styled(Card)`
-  flex: 1;
+  width: 100%;
 
   .ant-card-cover {
     height: 260px;
+
+    @media screen and (max-width: 768px) {
+      height: 220px;
+    }
 
     img {
       object-fit: cover;

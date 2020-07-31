@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 
 import { useStores } from '../hooks';
 
-import { Typography, Layout, Alert, Button, Space } from 'antd';
+import { Typography, Layout, Alert, Button } from 'antd';
 
 import { Banner, MoviesGrid, MovieModal } from '../components/ui';
 import { Container, Section } from '../components/layout';
@@ -57,7 +57,7 @@ const Home = () => {
             />
           )}
           {moviesStore.hasSearchResults ? (
-            <Space direction="vertical" size="large">
+            <>
               <MoviesGrid
                 movies={moviesStore.searchResults}
                 onMoviePress={handleMoviePress}
@@ -73,7 +73,7 @@ const Home = () => {
                   {searchInProgress ? 'Loading' : 'Load more results'}
                 </Button>
               )}
-            </Space>
+            </>
           ) : (
             <>
               <Section>
