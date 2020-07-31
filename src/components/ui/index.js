@@ -6,3 +6,4 @@ export { default as MovieRating } from './MovieRating';
 export { default as MovieImage } from './MovieImage';
 export { default as Header } from './Header';
 export { default as Footer } from './Footer';
+export { default as UserDropdown } from './UserDropdown';

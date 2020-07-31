@@ -1,10 +1,13 @@
 import React from 'react';
 
 import { NavLink } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import styled from 'styled-components';
 
 import { Layout, Space } from 'antd';
+
+import UserDropdown from './UserDropdown';
 
 const StyledHeader = styled(Layout.Header)`
   background-color: ${({ theme }) => theme.colors.light};
@@ -26,6 +29,14 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Header = () => {
+  const {
+    loginWithRedirect,
+    logout,
+    isAuthenticated,
+    user,
+    isLoading,
+  } = useAuth0();
+  console.log(user);
   return (
     <StyledHeader>
       <div className="logo">
@@ -33,14 +44,20 @@ const Header = () => {
           <strong>MovieFavz App</strong>
         </StyledLink>
       </div>
-      <nav className="navigation">
-        <Space size="large">
-          <StyledLink to="/your-favz" exact>
-            Your Favz
-          </StyledLink>
-          <span>Logout</span>
-        </Space>
-      </nav>
+      {!isLoading && (
+        <nav className="navigation">
+          <Space size="large">
+            <StyledLink to="/your-favz" exact>
+              Your Favz
+            </StyledLink>
+            {isAuthenticated ? (
+              <UserDropdown user={user} onLogout={logout} />
+            ) : (
+              <span onClick={() => loginWithRedirect()}>Log In</span>
+            )}
+          </Space>
+        </nav>
+      )}
     </StyledHeader>
   );
 };
