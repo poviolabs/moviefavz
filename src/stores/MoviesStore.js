@@ -46,7 +46,7 @@ class MoviesStore {
         const { Title, Poster, Type, Year, imdbID } = this.singleMoviesById[
           movieId
         ];
-        return [{ Title, Poster, Type, Year, imdbID }, ...arr];
+        return [...arr, { Title, Poster, Type, Year, imdbID }];
       }, []);
   }
 
@@ -153,6 +153,9 @@ class MoviesStore {
     if (this.favorites.includes(id)) {
       this.favorites = [...this.favorites.filter((movieId) => movieId !== id)];
     } else {
+      if (!Object.keys(this.singleMoviesById).includes(id)) {
+        this.fetchMovieById({ id });
+      }
       this.favorites = [id, ...this.favorites];
     }
     localStorage.setItem(
