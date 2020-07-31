@@ -5,11 +5,17 @@ import { Grid } from '../layout';
 
 import MovieCard from './MovieCard';
 
-const MoviesGrid = ({ movies, onMoviePress }) => {
+const MoviesGrid = ({ movies, favorites, onFavoritesPress, onMoviePress }) => {
   return (
     <Grid minColWidth={{ sm: '160px', lg: '215px' }}>
       {movies.map((movie) => (
-        <MovieCard key={movie.imdbID} onPress={onMoviePress} {...movie} />
+        <MovieCard
+          key={movie.imdbID}
+          onPress={onMoviePress}
+          onFavoritePress={onFavoritesPress}
+          favorited={favorites.includes(movie.imdbID)}
+          {...movie}
+        />
       ))}
     </Grid>
   );
@@ -26,6 +32,8 @@ MoviesGrid.propTypes = {
     })
   ),
   onMoviePress: PropTypes.func,
+  onFavoritesPress: PropTypes.func,
+  favorites: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default MoviesGrid;

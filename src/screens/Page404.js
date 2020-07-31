@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { Typography, Button, Layout, Space } from 'antd';
 
@@ -10,6 +10,8 @@ const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 const Page404 = () => {
+  const history = useHistory();
+
   return (
     <Content>
       <Container>
@@ -22,9 +24,13 @@ const Page404 = () => {
                 movies and review your latest findings later on.
               </Paragraph>
             </div>
-            <Link to="/" type="primary" size="large" component={Button}>
+            <Button
+              onClick={() => history.push('/')}
+              type="primary"
+              size="large"
+            >
               Back to home page
-            </Link>
+            </Button>
           </Space>
         </Section>
       </Container>

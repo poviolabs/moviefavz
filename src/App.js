@@ -3,6 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes } from './router';
 
+import { observer } from 'mobx-react';
+import { useStores } from './hooks';
+
 import styled from 'styled-components';
 
 import { Layout } from 'antd';
@@ -14,6 +17,16 @@ const StyledLayout = styled(Layout)`
 `;
 
 const App = () => {
+  const { moviesStore } = useStores();
+
+  React.useEffect(() => {
+    /**
+     * Later change this to initialize when
+     * user logs in and user-id is available
+     */
+    moviesStore.initializeFromStorage();
+    // eslint-disable-next-line
+  }, []);
   return (
     <StyledLayout>
       <Router>
@@ -25,4 +38,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default observer(App);

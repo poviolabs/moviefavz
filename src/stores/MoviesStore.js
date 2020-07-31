@@ -2,7 +2,7 @@ import { observable, computed, action, decorate, runInAction } from 'mobx';
 
 import { fetchSearchMovies, fetchMovieById } from '../api/omdbApiService';
 import { apiValidations } from '../utils';
-import { STATE_TYPES } from '../constants';
+import { STATE_TYPES, LOCAL_STORAGE } from '../constants';
 
 class MoviesStore {
   movies = [];
@@ -26,6 +26,28 @@ class MoviesStore {
       this.searchResults.length * (this.searchNextPage - 1)
       ? true
       : false;
+  }
+
+  get latestFindingsPreviews() {
+    return Object.keys(this.singleMoviesById)
+      .filter((movieId) => this.latestFindings.includes(movieId))
+      .reduce((arr, movieId) => {
+        const { Title, Poster, Type, Year, imdbID } = this.singleMoviesById[
+          movieId
+        ];
+        return [{ Title, Poster, Type, Year, imdbID }, ...arr];
+      }, []);
+  }
+
+  get latestFavoritesPreviews() {
+    return Object.keys(this.singleMoviesById)
+      .filter((movieId) => [...this.favorites].slice(0, 4).includes(movieId))
+      .reduce((arr, movieId) => {
+        const { Title, Poster, Type, Year, imdbID } = this.singleMoviesById[
+          movieId
+        ];
+        return [{ Title, Poster, Type, Year, imdbID }, ...arr];
+      }, []);
   }
 
   searchMovies = async ({ query }) => {
@@ -85,6 +107,13 @@ class MoviesStore {
     }
   };
 
+  clearSearchResults = () => {
+    this.searchResults = [];
+    this.searchNextPage = null;
+    this.totalResults = null;
+    this.query = '';
+  };
+
   fetchMovieById = async ({ id }) => {
     this.state = STATE_TYPES.pending;
     try {
@@ -109,10 +138,43 @@ class MoviesStore {
     }
   };
 
+  addToLatestFidings = ({ id }) => {
+    if (this.latestFindings.includes(id)) {
+      return;
+    }
+    this.latestFindings = [id, ...this.latestFindings.splice(0, 3)];
+    localStorage.setItem(
+      LOCAL_STORAGE.findings,
+      JSON.stringify(this.latestFindings)
+    );
+  };
+
+  toggleFavoriteMovie = ({ id }) => {
+    if (this.favorites.includes(id)) {
+      this.favorites = [...this.favorites.filter((movieId) => movieId !== id)];
+    } else {
+      this.favorites = [id, ...this.favorites];
+    }
+    localStorage.setItem(
+      LOCAL_STORAGE.favorites,
+      JSON.stringify(this.favorites)
+    );
+  };
+
   removeErrors = () => {
     this.searching = STATE_TYPES.inactive;
     this.state = STATE_TYPES.inactive;
     this.error = null;
+  };
+
+  initializeFromStorage = () => {
+    const favorites = localStorage.getItem(LOCAL_STORAGE.favorites);
+    const latestFindings = localStorage.getItem(LOCAL_STORAGE.findings);
+    this.favorites = JSON.parse(favorites);
+    this.latestFindings = JSON.parse(latestFindings) || [];
+    [...this.favorites, ...this.latestFindings].forEach((movieId) => {
+      this.fetchMovieById({ id: movieId });
+    });
   };
 }
 
@@ -124,13 +186,18 @@ decorate(MoviesStore, {
   searchNextPage: observable,
   error: observable,
   latestFindings: observable,
+  latestFindingsPreviews: computed,
+  latestFavoritesPreviews: computed,
   favorites: observable,
   singleMoviesById: observable,
   hasNextPage: computed,
   hasSearchResults: computed,
   searchMovies: action,
   searchMoviesNextPage: action,
+  clearSearchResults: action,
   fetchMovieById: action,
+  toggleFavoriteMovie: action,
+  addToLatestFidings: action,
   removeErrors: action,
 });
 

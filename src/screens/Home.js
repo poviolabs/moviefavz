@@ -27,6 +27,11 @@ const Home = () => {
 
   const handleMoviePress = (movieId) => {
     setSelectedMovie(movieId);
+    moviesStore.addToLatestFidings({ id: movieId });
+  };
+
+  const handleFavoritesPress = (movieId) => {
+    moviesStore.toggleFavoriteMovie({ id: movieId });
   };
 
   React.useEffect(() => {
@@ -37,7 +42,6 @@ const Home = () => {
         selectedMovie
       )
     ) {
-      console.count('selected movie effect');
       moviesStore.fetchMovieById({ id: selectedMovie });
     }
   }, [selectedMovie, moviesStore]);
@@ -60,7 +64,9 @@ const Home = () => {
             <>
               <MoviesGrid
                 movies={moviesStore.searchResults}
+                favorites={moviesStore.favorites}
                 onMoviePress={handleMoviePress}
+                onFavoritesPress={handleFavoritesPress}
               />
               {moviesStore.hasNextPage && (
                 <Button
@@ -78,17 +84,35 @@ const Home = () => {
             <>
               <Section>
                 <Title>Your latest findings</Title>
-                <Paragraph>
-                  Your search history is empty. Start searching for your
-                  favorite movies and review your latest findings later on.
-                </Paragraph>
+                {moviesStore.latestFindings.length > 0 ? (
+                  <MoviesGrid
+                    movies={moviesStore.latestFindingsPreviews}
+                    favorites={moviesStore.favorites}
+                    onMoviePress={handleMoviePress}
+                    onFavoritesPress={handleFavoritesPress}
+                  />
+                ) : (
+                  <Paragraph>
+                    Your search history is empty. Start searching for your
+                    favorite movies and review your latest findings later on.
+                  </Paragraph>
+                )}
               </Section>
               <Section>
                 <Title>Your latest favorites</Title>
-                <Paragraph>
-                  Your favorites list is empty. Start adding movies to your
-                  favorites list and review your latest findings later on.
-                </Paragraph>
+                {moviesStore.latestFavoritesPreviews.length > 0 ? (
+                  <MoviesGrid
+                    movies={moviesStore.latestFavoritesPreviews}
+                    favorites={moviesStore.favorites}
+                    onMoviePress={handleMoviePress}
+                    onFavoritesPress={handleFavoritesPress}
+                  />
+                ) : (
+                  <Paragraph>
+                    Your favorites list is empty. Start adding movies to your
+                    favorites list and review your latest findings later on.
+                  </Paragraph>
+                )}
               </Section>
             </>
           )}
@@ -98,7 +122,9 @@ const Home = () => {
         loading={moviesStore.state === STATE_TYPES.pending}
         visible={!!selectedMovie}
         movie={moviesStore.singleMoviesById[selectedMovie]}
+        favorited={moviesStore.favorites.includes(selectedMovie)}
         onClose={() => setSelectedMovie(null)}
+        onFavoritesPress={handleFavoritesPress}
       />
     </>
   );

@@ -3,8 +3,17 @@ import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
-import { Skeleton, Modal, Row, Col, Typography, Divider, Button } from 'antd';
-import { HeartOutlined, LinkOutlined } from '@ant-design/icons';
+import {
+  Skeleton,
+  Modal,
+  Row,
+  Col,
+  Typography,
+  Divider,
+  Button,
+  Tooltip,
+} from 'antd';
+import { HeartOutlined, HeartFilled, LinkOutlined } from '@ant-design/icons';
 
 import MovieRating from './MovieRating';
 import MovieImage from './MovieImage';
@@ -23,7 +32,14 @@ const StyledSmallText = styled(Paragraph)`
   color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
-const MovieModal = ({ visible, loading, movie, onClose }) => {
+const MovieModal = ({
+  visible,
+  loading,
+  movie,
+  favorited,
+  onClose,
+  onFavoritesPress,
+}) => {
   return (
     <Modal
       title={movie?.Title}
@@ -40,15 +56,20 @@ const MovieModal = ({ visible, loading, movie, onClose }) => {
             <Row gutter={16}>
               <Col sm={{ span: 24 }} lg={{ span: 10 }}>
                 <StyledPosterImage poster={movie.Poster} title={movie.Title} />
-                <Button
-                  type="primary"
-                  block
-                  icon={<HeartOutlined />}
-                  size="large"
-                  onClick={null}
+                <Tooltip
+                  placement="top"
+                  title={favorited ? 'Click to remove from favorites' : ''}
                 >
-                  Add to Favorites
-                </Button>
+                  <Button
+                    type="primary"
+                    block
+                    icon={favorited ? <HeartFilled /> : <HeartOutlined />}
+                    size="large"
+                    onClick={() => onFavoritesPress(movie.imdbID)}
+                  >
+                    {favorited ? 'Favorited' : 'Add to Favorites'}
+                  </Button>
+                </Tooltip>
                 <Button
                   icon={<LinkOutlined />}
                   block
@@ -104,6 +125,8 @@ MovieModal.propTypes = {
   loading: PropTypes.bool,
   onClose: PropTypes.func,
   movie: PropTypes.object,
+  favorited: PropTypes.bool,
+  onFavoritesPress: PropTypes.func,
 };
 
 export default MovieModal;

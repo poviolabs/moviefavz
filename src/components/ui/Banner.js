@@ -50,9 +50,10 @@ const Banner = ({ image }) => {
   const { moviesStore } = useStores();
   const handleSearch = (query) => {
     if (!query) {
-      return;
+      moviesStore.clearSearchResults();
+    } else {
+      moviesStore.searchMovies({ query });
     }
-    moviesStore.searchMovies({ query });
   };
   return (
     <StyledBanner {...{ image }}>
@@ -68,6 +69,7 @@ const Banner = ({ image }) => {
           size="large"
           enterButton="Search"
           placeholder="Your favorite movie title..."
+          allowClear={true}
           prefix={<SearchOutlined />}
         />
       </Container>
