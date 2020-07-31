@@ -39,9 +39,9 @@ class MoviesStore {
       }, []);
   }
 
-  get latestFavoritesPreviews() {
+  get favoritesPreviews() {
     return Object.keys(this.singleMoviesById)
-      .filter((movieId) => [...this.favorites].slice(0, 4).includes(movieId))
+      .filter((movieId) => this.favorites.includes(movieId))
       .reduce((arr, movieId) => {
         const { Title, Poster, Type, Year, imdbID } = this.singleMoviesById[
           movieId
@@ -190,7 +190,7 @@ decorate(MoviesStore, {
   error: observable,
   latestFindings: observable,
   latestFindingsPreviews: computed,
-  latestFavoritesPreviews: computed,
+  favoritesPreviews: computed,
   favorites: observable,
   singleMoviesById: observable,
   hasNextPage: computed,

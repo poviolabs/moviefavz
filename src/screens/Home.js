@@ -24,6 +24,10 @@ const Home = () => {
     return moviesStore.searching === STATE_TYPES.pending;
   }, [moviesStore.searching]);
 
+  const latestFavorites = React.useMemo(() => {
+    return moviesStore.favoritesPreviews.slice(0, 4);
+  }, [moviesStore.favoritesPreviews]);
+
   return (
     <>
       <Banner image={homeBannerBg} />
@@ -68,8 +72,8 @@ const Home = () => {
               </Section>
               <Section>
                 <Title>Your latest favorites</Title>
-                {moviesStore.latestFavoritesPreviews.length > 0 ? (
-                  <MoviesGrid movies={moviesStore.latestFavoritesPreviews} />
+                {latestFavorites.length > 0 ? (
+                  <MoviesGrid movies={latestFavorites} />
                 ) : (
                   <Paragraph>
                     Your favorites list is empty. Start adding movies to your
