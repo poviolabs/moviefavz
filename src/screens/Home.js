@@ -6,7 +6,7 @@ import { useStores } from '../hooks';
 
 import { Typography, Layout, Alert, Button } from 'antd';
 
-import { Banner, MoviesGrid, MovieModal } from '../components/ui';
+import { Banner, MoviesGrid } from '../components/ui';
 import { Container, Section } from '../components/layout';
 
 import { STATE_TYPES } from '../constants';
@@ -18,33 +18,11 @@ const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
 const Home = () => {
-  const [selectedMovie, setSelectedMovie] = React.useState(null);
   const { moviesStore } = useStores();
 
   const searchInProgress = React.useMemo(() => {
     return moviesStore.searching === STATE_TYPES.pending;
   }, [moviesStore.searching]);
-
-  const handleMoviePress = (movieId) => {
-    setSelectedMovie(movieId);
-    moviesStore.addToLatestFidings({ id: movieId });
-  };
-
-  const handleFavoritesPress = (movieId) => {
-    moviesStore.toggleFavoriteMovie({ id: movieId });
-  };
-
-  React.useEffect(() => {
-    if (
-      selectedMovie &&
-      !Object.prototype.hasOwnProperty.call(
-        moviesStore.singleMoviesById,
-        selectedMovie
-      )
-    ) {
-      moviesStore.fetchMovieById({ id: selectedMovie });
-    }
-  }, [selectedMovie, moviesStore]);
 
   return (
     <>
@@ -62,12 +40,7 @@ const Home = () => {
           )}
           {moviesStore.hasSearchResults ? (
             <>
-              <MoviesGrid
-                movies={moviesStore.searchResults}
-                favorites={moviesStore.favorites}
-                onMoviePress={handleMoviePress}
-                onFavoritesPress={handleFavoritesPress}
-              />
+              <MoviesGrid movies={moviesStore.searchResults} />
               {moviesStore.hasNextPage && (
                 <Button
                   size="large"
@@ -85,12 +58,7 @@ const Home = () => {
               <Section>
                 <Title>Your latest findings</Title>
                 {moviesStore.latestFindings.length > 0 ? (
-                  <MoviesGrid
-                    movies={moviesStore.latestFindingsPreviews}
-                    favorites={moviesStore.favorites}
-                    onMoviePress={handleMoviePress}
-                    onFavoritesPress={handleFavoritesPress}
-                  />
+                  <MoviesGrid movies={moviesStore.latestFindingsPreviews} />
                 ) : (
                   <Paragraph>
                     Your search history is empty. Start searching for your
@@ -101,12 +69,7 @@ const Home = () => {
               <Section>
                 <Title>Your latest favorites</Title>
                 {moviesStore.latestFavoritesPreviews.length > 0 ? (
-                  <MoviesGrid
-                    movies={moviesStore.latestFavoritesPreviews}
-                    favorites={moviesStore.favorites}
-                    onMoviePress={handleMoviePress}
-                    onFavoritesPress={handleFavoritesPress}
-                  />
+                  <MoviesGrid movies={moviesStore.latestFavoritesPreviews} />
                 ) : (
                   <Paragraph>
                     Your favorites list is empty. Start adding movies to your
@@ -118,14 +81,6 @@ const Home = () => {
           )}
         </Container>
       </Content>
-      <MovieModal
-        loading={moviesStore.state === STATE_TYPES.pending}
-        visible={!!selectedMovie}
-        movie={moviesStore.singleMoviesById[selectedMovie]}
-        favorited={moviesStore.favorites.includes(selectedMovie)}
-        onClose={() => setSelectedMovie(null)}
-        onFavoritesPress={handleFavoritesPress}
-      />
     </>
   );
 };

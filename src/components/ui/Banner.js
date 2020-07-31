@@ -13,6 +13,7 @@ import { SearchOutlined } from '@ant-design/icons';
 
 import { Container } from '../layout';
 import { Emoji } from '../typography';
+import { STATE_TYPES } from '../../constants';
 
 const { Title } = Typography;
 const { Search } = Input;
@@ -70,6 +71,7 @@ const Banner = ({ image }) => {
           enterButton="Search"
           placeholder="Your favorite movie title..."
           allowClear={true}
+          loading={moviesStore.searching === STATE_TYPES.pending}
           prefix={<SearchOutlined />}
         />
       </Container>
