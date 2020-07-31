@@ -5,6 +5,7 @@ import { Routes } from './router';
 
 import { observer } from 'mobx-react';
 import { useStores } from './hooks';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import styled from 'styled-components';
 
@@ -17,16 +18,20 @@ const StyledLayout = styled(Layout)`
 `;
 
 const App = () => {
+  const { user, isLoading, isAuthenticated } = useAuth0();
   const { moviesStore } = useStores();
 
   React.useEffect(() => {
     /**
-     * Later change this to initialize when
-     * user logs in and user-id is available
+     * Initialize localy stored data when
+     * user logs in and user.sub is available
      */
-    moviesStore.initializeFromStorage();
+    if (isAuthenticated && !isLoading) {
+      moviesStore.initializeFromStorage({ user: user.sub });
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [isAuthenticated, isLoading, user]);
+
   return (
     <StyledLayout>
       <Router>

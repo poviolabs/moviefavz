@@ -138,18 +138,18 @@ class MoviesStore {
     }
   };
 
-  addToLatestFidings = ({ id }) => {
+  addToLatestFidings = ({ id, user }) => {
     if (this.latestFindings.includes(id)) {
       return;
     }
     this.latestFindings = [id, ...this.latestFindings.splice(0, 3)];
     localStorage.setItem(
-      LOCAL_STORAGE.findings,
+      `${LOCAL_STORAGE.findings}_${user}`,
       JSON.stringify(this.latestFindings)
     );
   };
 
-  toggleFavoriteMovie = ({ id }) => {
+  toggleFavoriteMovie = ({ id, user }) => {
     if (this.favorites.includes(id)) {
       this.favorites = [...this.favorites.filter((movieId) => movieId !== id)];
     } else {
@@ -159,7 +159,7 @@ class MoviesStore {
       this.favorites = [id, ...this.favorites];
     }
     localStorage.setItem(
-      LOCAL_STORAGE.favorites,
+      `${LOCAL_STORAGE.favorites}_${user}`,
       JSON.stringify(this.favorites)
     );
   };
@@ -170,10 +170,14 @@ class MoviesStore {
     this.error = null;
   };
 
-  initializeFromStorage = () => {
-    const favorites = localStorage.getItem(LOCAL_STORAGE.favorites);
-    const latestFindings = localStorage.getItem(LOCAL_STORAGE.findings);
-    this.favorites = JSON.parse(favorites);
+  initializeFromStorage = ({ user }) => {
+    const favorites = localStorage.getItem(
+      `${LOCAL_STORAGE.favorites}_${user}`
+    );
+    const latestFindings = localStorage.getItem(
+      `${LOCAL_STORAGE.findings}_${user}`
+    );
+    this.favorites = JSON.parse(favorites) || [];
     this.latestFindings = JSON.parse(latestFindings) || [];
     [...this.favorites, ...this.latestFindings].forEach((movieId) => {
       this.fetchMovieById({ id: movieId });

@@ -3,10 +3,11 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import { useStores } from '../hooks';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { Typography, Layout, Alert, Button } from 'antd';
 
-import { Banner, MoviesGrid } from '../components/ui';
+import { Banner, MoviesGrid, LoginButton } from '../components/ui';
 import { Container, Section } from '../components/layout';
 
 import { STATE_TYPES } from '../constants';
@@ -19,6 +20,7 @@ const { Title, Paragraph } = Typography;
 
 const Home = () => {
   const { moviesStore } = useStores();
+  const { isAuthenticated } = useAuth0();
 
   const searchInProgress = React.useMemo(() => {
     return moviesStore.searching === STATE_TYPES.pending;
@@ -64,10 +66,14 @@ const Home = () => {
                 {moviesStore.latestFindings.length > 0 ? (
                   <MoviesGrid movies={moviesStore.latestFindingsPreviews} />
                 ) : (
-                  <Paragraph>
-                    Your search history is empty. Start searching for your
-                    favorite movies and review your latest findings later on.
-                  </Paragraph>
+                  <>
+                    <Paragraph>
+                      {isAuthenticated
+                        ? 'Your search history is empty. Start searching for your favorite movies and review your latest findings later on.'
+                        : 'You are not logged in. In order to keep track of your findings, you need to log in first.'}
+                    </Paragraph>
+                    <LoginButton />
+                  </>
                 )}
               </Section>
               <Section>
@@ -75,10 +81,14 @@ const Home = () => {
                 {latestFavorites.length > 0 ? (
                   <MoviesGrid movies={latestFavorites} />
                 ) : (
-                  <Paragraph>
-                    Your favorites list is empty. Start adding movies to your
-                    favorites list and review your latest findings later on.
-                  </Paragraph>
+                  <>
+                    <Paragraph>
+                      {isAuthenticated
+                        ? 'Your favorites list is empty. Start adding movies to your favorites list and review your latest findings later on.'
+                        : 'You are not logged in. In order to save movies to favorites, you need to log in first.'}
+                    </Paragraph>
+                    <LoginButton />
+                  </>
                 )}
               </Section>
             </>

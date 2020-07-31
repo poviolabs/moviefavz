@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import styled from 'styled-components';
 
-import { Layout, Space } from 'antd';
+import { Layout, Space, Button } from 'antd';
 
 import UserDropdown from './UserDropdown';
 
@@ -36,24 +36,28 @@ const Header = () => {
     user,
     isLoading,
   } = useAuth0();
-  console.log(user);
+
   return (
     <StyledHeader>
       <div className="logo">
         <StyledLink to="/" exact>
-          <strong>MovieFavz App</strong>
+          <strong>MovieFavz</strong>
         </StyledLink>
       </div>
       {!isLoading && (
         <nav className="navigation">
           <Space size="large">
-            <StyledLink to="/your-favz" exact>
-              Your Favz
-            </StyledLink>
             {isAuthenticated ? (
-              <UserDropdown user={user} onLogout={logout} />
+              <>
+                <StyledLink to="/your-favz" exact>
+                  Your Favz
+                </StyledLink>
+                <UserDropdown user={user} onLogout={logout} />
+              </>
             ) : (
-              <span onClick={() => loginWithRedirect()}>Log In</span>
+              <Button size="middle" danger onClick={() => loginWithRedirect()}>
+                Log In
+              </Button>
             )}
           </Space>
         </nav>

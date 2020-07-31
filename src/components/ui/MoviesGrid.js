@@ -3,25 +3,35 @@ import PropTypes from 'prop-types';
 
 import { observer } from 'mobx-react';
 import { useStores } from '../../hooks';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { Grid } from '../layout';
 
 import MovieCard from './MovieCard';
 import MovieModal from './MovieModal';
+import AuthModal from './AuthModal';
 
 import { STATE_TYPES } from '../../constants';
 
 const MoviesGrid = ({ movies = [] }) => {
+  const [authModalActive, setAuthModalActive] = React.useState(false);
   const [selectedMovie, setSelectedMovie] = React.useState(null);
   const { moviesStore } = useStores();
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   const handleMoviePress = (movieId) => {
     setSelectedMovie(movieId);
-    moviesStore.addToLatestFidings({ id: movieId });
+    if (isAuthenticated) {
+      moviesStore.addToLatestFidings({ id: movieId, user: user.sub });
+    }
   };
 
   const handleFavoritesPress = (movieId) => {
-    moviesStore.toggleFavoriteMovie({ id: movieId });
+    if (!isAuthenticated) {
+      setAuthModalActive(true);
+      return;
+    }
+    moviesStore.toggleFavoriteMovie({ id: movieId, user: user.sub });
   };
 
   React.useEffect(() => {
@@ -56,6 +66,11 @@ const MoviesGrid = ({ movies = [] }) => {
         favorited={moviesStore.favorites.includes(selectedMovie)}
         onClose={() => setSelectedMovie(null)}
         onFavoritesPress={handleFavoritesPress}
+      />
+      <AuthModal
+        visible={authModalActive}
+        onCancel={() => setAuthModalActive(false)}
+        onConfirm={loginWithRedirect}
       />
     </>
   );
