@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/poviolabs.github.io/moviefavz/static/css/main.e2af1c4b.chunk.css",
-    "main.js": "/poviolabs.github.io/moviefavz/static/js/main.858cadb9.chunk.js",
-    "main.js.map": "/poviolabs.github.io/moviefavz/static/js/main.858cadb9.chunk.js.map",
-    "runtime-main.js": "/poviolabs.github.io/moviefavz/static/js/runtime-main.e596c330.js",
-    "runtime-main.js.map": "/poviolabs.github.io/moviefavz/static/js/runtime-main.e596c330.js.map",
-    "static/js/2.2c9e6b9b.chunk.js": "/poviolabs.github.io/moviefavz/static/js/2.2c9e6b9b.chunk.js",
-    "static/js/2.2c9e6b9b.chunk.js.map": "/poviolabs.github.io/moviefavz/static/js/2.2c9e6b9b.chunk.js.map",
-    "index.html": "/poviolabs.github.io/moviefavz/index.html",
-    "precache-manifest.7fb456333ac7bb2c88f9d2d6006a0e55.js": "/poviolabs.github.io/moviefavz/precache-manifest.7fb456333ac7bb2c88f9d2d6006a0e55.js",
-    "service-worker.js": "/poviolabs.github.io/moviefavz/service-worker.js",
-    "static/css/main.e2af1c4b.chunk.css.map": "/poviolabs.github.io/moviefavz/static/css/main.e2af1c4b.chunk.css.map",
-    "static/js/2.2c9e6b9b.chunk.js.LICENSE.txt": "/poviolabs.github.io/moviefavz/static/js/2.2c9e6b9b.chunk.js.LICENSE.txt",
-    "static/media/index.less": "/poviolabs.github.io/moviefavz/static/media/Poppins-Thin.25cd0f68.ttf",
-    "static/media/home-banner-bg-2.jpg": "/poviolabs.github.io/moviefavz/static/media/home-banner-bg-2.b5875739.jpg"
+    "main.css": "/moviefavz/static/css/main.d67ef5b3.chunk.css",
+    "main.js": "/moviefavz/static/js/main.858cadb9.chunk.js",
+    "main.js.map": "/moviefavz/static/js/main.858cadb9.chunk.js.map",
+    "runtime-main.js": "/moviefavz/static/js/runtime-main.3a4aecee.js",
+    "runtime-main.js.map": "/moviefavz/static/js/runtime-main.3a4aecee.js.map",
+    "static/js/2.5e7baea0.chunk.js": "/moviefavz/static/js/2.5e7baea0.chunk.js",
+    "static/js/2.5e7baea0.chunk.js.map": "/moviefavz/static/js/2.5e7baea0.chunk.js.map",
+    "index.html": "/moviefavz/index.html",
+    "precache-manifest.a94aa17652aa7001b79895423fc4081e.js": "/moviefavz/precache-manifest.a94aa17652aa7001b79895423fc4081e.js",
+    "service-worker.js": "/moviefavz/service-worker.js",
+    "static/css/main.d67ef5b3.chunk.css.map": "/moviefavz/static/css/main.d67ef5b3.chunk.css.map",
+    "static/js/2.5e7baea0.chunk.js.LICENSE.txt": "/moviefavz/static/js/2.5e7baea0.chunk.js.LICENSE.txt",
+    "static/media/index.less": "/moviefavz/static/media/Poppins-Thin.25cd0f68.ttf",
+    "static/media/home-banner-bg-2.jpg": "/moviefavz/static/media/home-banner-bg-2.b5875739.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e596c330.js",
-    "static/js/2.2c9e6b9b.chunk.js",
-    "static/css/main.e2af1c4b.chunk.css",
+    "static/js/runtime-main.3a4aecee.js",
+    "static/js/2.5e7baea0.chunk.js",
+    "static/css/main.d67ef5b3.chunk.css",
     "static/js/main.858cadb9.chunk.js"
   ]
 }
