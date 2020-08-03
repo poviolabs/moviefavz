@@ -28,6 +28,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "test:staged": "cross-env CI=true craco test --findRelatedTests",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -53,6 +54,7 @@
   "lint-staged": {
     "*.js": [
       "npx eslint --fix",
+      "npm run test:staged",
       "git add"
     ]
   },

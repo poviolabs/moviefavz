@@ -104,7 +104,7 @@ const MovieModal = ({
                 </StyledSmallText>
                 <Divider />
                 <Title level={4}>Ratings</Title>
-                {movie.Ratings.map(({ Source, Value }) => (
+                {movie.Ratings?.map(({ Source, Value }) => (
                   <MovieRating key={Source} source={Source} value={Value} />
                 ))}
                 <MovieRating
