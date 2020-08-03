@@ -13,6 +13,8 @@ import { Layout } from 'antd';
 
 import { Header, Footer } from './components/ui';
 
+import { ENVIRONMENT } from './constants';
+
 const StyledLayout = styled(Layout)`
   min-height: 100vh;
 `;
@@ -34,7 +36,7 @@ const App = () => {
 
   return (
     <StyledLayout>
-      <Router>
+      <Router basename={ENVIRONMENT.appBaseUrl}>
         <Header />
         <Routes />
         <Footer />
