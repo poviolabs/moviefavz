@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/poviolabs.github.io/moviefavz/static/css/main.e2af1c4b.chunk.css",
-    "main.js": "/poviolabs.github.io/moviefavz/static/js/main.e8453205.chunk.js",
-    "main.js.map": "/poviolabs.github.io/moviefavz/static/js/main.e8453205.chunk.js.map",
+    "main.js": "/poviolabs.github.io/moviefavz/static/js/main.858cadb9.chunk.js",
+    "main.js.map": "/poviolabs.github.io/moviefavz/static/js/main.858cadb9.chunk.js.map",
     "runtime-main.js": "/poviolabs.github.io/moviefavz/static/js/runtime-main.e596c330.js",
     "runtime-main.js.map": "/poviolabs.github.io/moviefavz/static/js/runtime-main.e596c330.js.map",
-    "static/js/2.3b55494e.chunk.js": "/poviolabs.github.io/moviefavz/static/js/2.3b55494e.chunk.js",
-    "static/js/2.3b55494e.chunk.js.map": "/poviolabs.github.io/moviefavz/static/js/2.3b55494e.chunk.js.map",
+    "static/js/2.2c9e6b9b.chunk.js": "/poviolabs.github.io/moviefavz/static/js/2.2c9e6b9b.chunk.js",
+    "static/js/2.2c9e6b9b.chunk.js.map": "/poviolabs.github.io/moviefavz/static/js/2.2c9e6b9b.chunk.js.map",
     "index.html": "/poviolabs.github.io/moviefavz/index.html",
-    "precache-manifest.64e360f18a6fae235e50d47647840be4.js": "/poviolabs.github.io/moviefavz/precache-manifest.64e360f18a6fae235e50d47647840be4.js",
+    "precache-manifest.7fb456333ac7bb2c88f9d2d6006a0e55.js": "/poviolabs.github.io/moviefavz/precache-manifest.7fb456333ac7bb2c88f9d2d6006a0e55.js",
     "service-worker.js": "/poviolabs.github.io/moviefavz/service-worker.js",
     "static/css/main.e2af1c4b.chunk.css.map": "/poviolabs.github.io/moviefavz/static/css/main.e2af1c4b.chunk.css.map",
-    "static/js/2.3b55494e.chunk.js.LICENSE.txt": "/poviolabs.github.io/moviefavz/static/js/2.3b55494e.chunk.js.LICENSE.txt",
+    "static/js/2.2c9e6b9b.chunk.js.LICENSE.txt": "/poviolabs.github.io/moviefavz/static/js/2.2c9e6b9b.chunk.js.LICENSE.txt",
     "static/media/index.less": "/poviolabs.github.io/moviefavz/static/media/Poppins-Thin.25cd0f68.ttf",
     "static/media/home-banner-bg-2.jpg": "/poviolabs.github.io/moviefavz/static/media/home-banner-bg-2.b5875739.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.e596c330.js",
-    "static/js/2.3b55494e.chunk.js",
+    "static/js/2.2c9e6b9b.chunk.js",
     "static/css/main.e2af1c4b.chunk.css",
-    "static/js/main.e8453205.chunk.js"
+    "static/js/main.858cadb9.chunk.js"
   ]
 }
