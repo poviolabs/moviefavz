@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "https://poviolabs.github.com/moviefavz/static/css/main.0759aa95.chunk.css",
-    "main.js": "https://poviolabs.github.com/moviefavz/static/js/main.919e1f59.chunk.js",
-    "main.js.map": "https://poviolabs.github.com/moviefavz/static/js/main.919e1f59.chunk.js.map",
-    "runtime-main.js": "https://poviolabs.github.com/moviefavz/static/js/runtime-main.c80168b3.js",
-    "runtime-main.js.map": "https://poviolabs.github.com/moviefavz/static/js/runtime-main.c80168b3.js.map",
-    "static/js/2.006ba872.chunk.js": "https://poviolabs.github.com/moviefavz/static/js/2.006ba872.chunk.js",
-    "static/js/2.006ba872.chunk.js.map": "https://poviolabs.github.com/moviefavz/static/js/2.006ba872.chunk.js.map",
-    "index.html": "https://poviolabs.github.com/moviefavz/index.html",
-    "precache-manifest.d84e1770f9de30f6c5c2db77d48df3e8.js": "https://poviolabs.github.com/moviefavz/precache-manifest.d84e1770f9de30f6c5c2db77d48df3e8.js",
-    "service-worker.js": "https://poviolabs.github.com/moviefavz/service-worker.js",
-    "static/css/main.0759aa95.chunk.css.map": "https://poviolabs.github.com/moviefavz/static/css/main.0759aa95.chunk.css.map",
-    "static/js/2.006ba872.chunk.js.LICENSE.txt": "https://poviolabs.github.com/moviefavz/static/js/2.006ba872.chunk.js.LICENSE.txt",
-    "static/media/index.less": "https://poviolabs.github.com/moviefavz/static/media/Poppins-Thin.25cd0f68.ttf",
-    "static/media/home-banner-bg-2.jpg": "https://poviolabs.github.com/moviefavz/static/media/home-banner-bg-2.b5875739.jpg"
+    "main.css": "https://poviolabs.github.io/moviefavz/static/css/main.4a2d10d2.chunk.css",
+    "main.js": "https://poviolabs.github.io/moviefavz/static/js/main.198c8a07.chunk.js",
+    "main.js.map": "https://poviolabs.github.io/moviefavz/static/js/main.198c8a07.chunk.js.map",
+    "runtime-main.js": "https://poviolabs.github.io/moviefavz/static/js/runtime-main.3df1e3a0.js",
+    "runtime-main.js.map": "https://poviolabs.github.io/moviefavz/static/js/runtime-main.3df1e3a0.js.map",
+    "static/js/2.5ef8cc1d.chunk.js": "https://poviolabs.github.io/moviefavz/static/js/2.5ef8cc1d.chunk.js",
+    "static/js/2.5ef8cc1d.chunk.js.map": "https://poviolabs.github.io/moviefavz/static/js/2.5ef8cc1d.chunk.js.map",
+    "index.html": "https://poviolabs.github.io/moviefavz/index.html",
+    "precache-manifest.cc4c763c1ca6ac1db930aca42b8bb6f9.js": "https://poviolabs.github.io/moviefavz/precache-manifest.cc4c763c1ca6ac1db930aca42b8bb6f9.js",
+    "service-worker.js": "https://poviolabs.github.io/moviefavz/service-worker.js",
+    "static/css/main.4a2d10d2.chunk.css.map": "https://poviolabs.github.io/moviefavz/static/css/main.4a2d10d2.chunk.css.map",
+    "static/js/2.5ef8cc1d.chunk.js.LICENSE.txt": "https://poviolabs.github.io/moviefavz/static/js/2.5ef8cc1d.chunk.js.LICENSE.txt",
+    "static/media/index.less": "https://poviolabs.github.io/moviefavz/static/media/Poppins-Thin.25cd0f68.ttf",
+    "static/media/home-banner-bg-2.jpg": "https://poviolabs.github.io/moviefavz/static/media/home-banner-bg-2.b5875739.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c80168b3.js",
-    "static/js/2.006ba872.chunk.js",
-    "static/css/main.0759aa95.chunk.css",
-    "static/js/main.919e1f59.chunk.js"
+    "static/js/runtime-main.3df1e3a0.js",
+    "static/js/2.5ef8cc1d.chunk.js",
+    "static/css/main.4a2d10d2.chunk.css",
+    "static/js/main.198c8a07.chunk.js"
   ]
 }
