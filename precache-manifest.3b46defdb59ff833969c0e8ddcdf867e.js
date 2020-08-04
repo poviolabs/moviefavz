@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "08a89ffac712ea3f8e192b8d340d76f8",
+    "revision": "30e1a6d1b8286563464a997279d38c7e",
     "url": "https://poviolabs.github.io/moviefavz/index.html"
   },
   {
-    "revision": "97972ce9def2e9a19d18",
+    "revision": "24ad62216b0e20f34676",
     "url": "https://poviolabs.github.io/moviefavz/static/css/main.ea527d92.chunk.css"
   },
   {
-    "revision": "1ce998bd381bc53dfd55",
-    "url": "https://poviolabs.github.io/moviefavz/static/js/2.5ef8cc1d.chunk.js"
+    "revision": "d02d14ee561ab3ff69fc",
+    "url": "https://poviolabs.github.io/moviefavz/static/js/2.c508c35b.chunk.js"
   },
   {
     "revision": "4fdb92f5a0a11be5d79ae606cb253c2b",
-    "url": "https://poviolabs.github.io/moviefavz/static/js/2.5ef8cc1d.chunk.js.LICENSE.txt"
+    "url": "https://poviolabs.github.io/moviefavz/static/js/2.c508c35b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "97972ce9def2e9a19d18",
-    "url": "https://poviolabs.github.io/moviefavz/static/js/main.5b96fb02.chunk.js"
+    "revision": "24ad62216b0e20f34676",
+    "url": "https://poviolabs.github.io/moviefavz/static/js/main.b185417b.chunk.js"
   },
   {
     "revision": "1e20fd7783ffa84fa002",
