@@ -36,7 +36,7 @@ const App = () => {
 
   return (
     <StyledLayout>
-      <Router basename={ENVIRONMENT.appBaseUrl}>
+      <Router basename={ENVIRONMENT.appBaseName}>
         <Header />
         <Routes />
         <Footer />
