@@ -142,35 +142,35 @@ import  {  BrowserRouter  }  from  'react-router-dom';
 import  {  ThemeProvider  }  from  'styled-components';
 import  {  theme  }  from  '../styles';
 
-const  AllTheProviders  =  ({  children  })  =>  {
+const AllTheProviders = ({ children }) => {
 	return (
-		<ThemeProvider  theme={theme}>
+		<ThemeProvider theme={theme}>
 			<BrowserRouter>{children}</BrowserRouter>
 		</ThemeProvider>
 	);
 };
 
-const  customRender  =  (ui,  options)  =>	render(ui,  {  wrapper:  AllTheProviders,  ...options  });
+const customRender = (ui, options) =>	render(ui, { wrapper: AllTheProviders, ...options });
 
 // re-export everything
-export  *  from  '@testing-library/react';
+export * from '@testing-library/react';
 
 // override render method
-export  {  customRender  as  render  };
+export { customRender as render };
 ```
-   
+  
 In your tests, import test utils (most importantly `render` method) from `testUtils.js` file. Your tested components will be automatically wrapped in specified providers.
 
 ```javascript
-import React from  'react';
-import  {  render  }  from  '../../../utils/testUtils'; // <-- this is the important line
+import React from 'react';
+import { render } from '../../../utils/testUtils'; // <-- this is the important line
 
-import Section from  '../Section';
+import Section from '../Section';
 
-describe('<Section />',  ()  =>  {
-	it('Renders the Component',  ()  =>  {
-		const  props  =  {};
-		const  container  =  render(
+describe('<Section />', () => {
+	it('Renders the Component', () => {
+		const props = {};
+		const container = render(
 			<Section {...props}>
 				<p>Some child element</p>
 			</Section>
@@ -190,9 +190,9 @@ In `package.json` file, change the property `homepage` to your production URL.
 Since CRA currently [has an issue](https://github.com/facebook/create-react-app/issues/2575) with reading the homepage property correctly, add `PUBLIC_URL=<your_url>` before `predeploy` script.
 
 ```json
-"scripts":  {
+"scripts": {
 	...
-	"predeploy":  "PUBLIC_URL='https://poviolabs.github.io/moviefavz' npm run build",
+	"predeploy": "PUBLIC_URL='https://poviolabs.github.io/moviefavz' npm run build",
 	...
 }
 ```
@@ -202,7 +202,7 @@ Since CRA currently [has an issue](https://github.com/facebook/create-react-app/
 
 In the project directory, you can run:
 <br>
-  
+ 
 ### `yarn start`
 
 Runs the app in the development mode.
@@ -214,7 +214,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 Launches the test runner in the interactive watch mode.
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 <br>
-  
+ 
 ### `yarn build`
 
 Builds the app for production to the `build` folder.
@@ -223,7 +223,7 @@ The build is minified and the filenames include the hashes.
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 <br>
-  
+ 
 
 ### `yarn predeploy`
 
@@ -238,23 +238,23 @@ Deploys the app to the GH pages (if properly connected to your GH repository)
 
 ## Learn More
 
-  
+ 
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-  
+ 
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-  
+ 
 
 ### Code Splitting
 
-  
+ 
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-  
+ 
 
 ### Analyzing the Bundle Size
 
