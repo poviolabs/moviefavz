@@ -2,7 +2,7 @@
   "name": "moviefavz",
   "version": "0.1.0",
   "private": true,
-  "homepage": "poviolabs.github.io/moviefavz",
+  "homepage": "https://poviolabs.github.io/moviefavz",
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
     "@auth0/auth0-react": "^1.0.0",
@@ -30,7 +30,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "PUBLIC_URL='https://poviolabs.github.io/moviefavz' npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {

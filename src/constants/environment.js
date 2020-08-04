@@ -1,3 +1,5 @@
-const appBaseUrl = process.env.NODE_ENV === 'production' ? '/moviefavz' : '/';
+const isProduction = process.env.NODE_ENV === 'production' ? true : false;
 
-export default { appBaseUrl };
+const appBaseUrl = process.env.PUBLIC_URL;
+
+export default { isProduction, appBaseUrl };
