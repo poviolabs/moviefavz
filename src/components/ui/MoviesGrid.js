@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { observer } from 'mobx-react';
-import { useStores, useAppAuth } from '../../hooks';
+import { useStores } from '../../hooks';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { Grid } from '../layout';
@@ -17,8 +17,7 @@ const MoviesGrid = ({ movies = [] }) => {
   const [authModalActive, setAuthModalActive] = React.useState(false);
   const [selectedMovie, setSelectedMovie] = React.useState(null);
   const { moviesStore } = useStores();
-  const { user, isAuthenticated } = useAuth0();
-  const { login } = useAppAuth();
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
   const handleMoviePress = (movieId) => {
     setSelectedMovie(movieId);
@@ -71,7 +70,7 @@ const MoviesGrid = ({ movies = [] }) => {
       <AuthModal
         visible={authModalActive}
         onCancel={() => setAuthModalActive(false)}
-        onConfirm={login}
+        onConfirm={loginWithRedirect}
       />
     </>
   );

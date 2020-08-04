@@ -1,13 +1,11 @@
 import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
-import { useAppAuth } from '../../hooks';
 
 import { Button, Divider } from 'antd';
 
 const LoginButton = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
-  const { login } = useAppAuth();
+  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
   if (isAuthenticated || isLoading) {
     return null;
@@ -15,7 +13,7 @@ const LoginButton = () => {
   return (
     <>
       <Divider />
-      <Button type="primary" size="large" onClick={login}>
+      <Button type="primary" size="large" onClick={loginWithRedirect}>
         Log in
       </Button>
     </>

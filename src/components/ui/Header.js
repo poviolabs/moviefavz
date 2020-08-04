@@ -3,8 +3,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { useAppAuth } from '../../hooks';
-
 import styled from 'styled-components';
 
 import { Layout, Space, Button } from 'antd';
@@ -31,8 +29,13 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Header = () => {
-  const { isAuthenticated, user, isLoading } = useAuth0();
-  const { login, logout } = useAppAuth();
+  const {
+    isAuthenticated,
+    user,
+    isLoading,
+    loginWithRedirect,
+    logout,
+  } = useAuth0();
 
   return (
     <StyledHeader>
@@ -52,7 +55,7 @@ const Header = () => {
                 <UserDropdown user={user} onLogout={logout} />
               </>
             ) : (
-              <Button size="middle" danger onClick={login}>
+              <Button size="middle" danger onClick={loginWithRedirect}>
                 Log In
               </Button>
             )}
