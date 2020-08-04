@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { NavLink } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 import { Dropdown, Avatar, Menu, Space } from 'antd';
@@ -19,6 +21,9 @@ const UserDropdown = ({ user, onLogout }) => {
     <Dropdown
       overlay={
         <Menu>
+          <Menu.Item>
+            <NavLink to="/your-app-usage">Your app usage</NavLink>
+          </Menu.Item>
           <Menu.Item>
             <span onClick={onLogout}>Log out</span>
           </Menu.Item>

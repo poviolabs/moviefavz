@@ -14,6 +14,6 @@ describe('<MovieModal />', () => {
       onFavoritesPress: jest.fn(),
     };
     const container = render(<MovieModal {...props} />);
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

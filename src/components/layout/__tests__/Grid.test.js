@@ -13,6 +13,6 @@ describe('<Grid />', () => {
         <p>Child element 3</p>
       </Grid>
     );
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

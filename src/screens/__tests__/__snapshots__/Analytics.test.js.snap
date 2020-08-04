@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Favorites /> Renders the Component 1`] = `
+exports[`<Analytics /> Renders the Component 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -14,36 +14,17 @@ Object {
           <section
             class="sc-AxirZ hdipWj"
           >
-            <div
-              class="ant-row ant-row-middle"
+            <h1
+              class="ant-typography"
             >
-              <div
-                class="ant-col"
-                style="flex-basis: auto;"
+              Your App Usage 
+              <span
+                aria-label="analytics"
+                role="img"
               >
-                <h1
-                  class="ant-typography"
-                >
-                  Your Favz
-                </h1>
-                <div
-                  class="ant-typography"
-                >
-                  Here are your favorited movies. It's always smart to keep track of things you like
-                   
-                  <span
-                    aria-label="pointing finger"
-                    role="img"
-                  >
-                    👇
-                  </span>
-                </div>
-              </div>
-              <div
-                class="ant-col"
-                style="flex: 0 0 200px;"
-              />
-            </div>
+                📈
+              </span>
+            </h1>
           </section>
         </div>
       </main>
@@ -59,36 +40,17 @@ Object {
         <section
           class="sc-AxirZ hdipWj"
         >
-          <div
-            class="ant-row ant-row-middle"
+          <h1
+            class="ant-typography"
           >
-            <div
-              class="ant-col"
-              style="flex-basis: auto;"
+            Your App Usage 
+            <span
+              aria-label="analytics"
+              role="img"
             >
-              <h1
-                class="ant-typography"
-              >
-                Your Favz
-              </h1>
-              <div
-                class="ant-typography"
-              >
-                Here are your favorited movies. It's always smart to keep track of things you like
-                 
-                <span
-                  aria-label="pointing finger"
-                  role="img"
-                >
-                  👇
-                </span>
-              </div>
-            </div>
-            <div
-              class="ant-col"
-              style="flex: 0 0 200px;"
-            />
-          </div>
+              📈
+            </span>
+          </h1>
         </section>
       </div>
     </main>

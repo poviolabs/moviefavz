@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Switch, Route } from 'react-router-dom';
 
-import { Home, Favorites, Page404 } from '../screens';
+import { Home, Favorites, Page404, Analytics } from '../screens';
 
 const Routes = () => {
   return (
@@ -16,6 +16,10 @@ const Routes = () => {
          * Favorited movies screen
          */}
         <Route path="/your-favz" exact component={Favorites} />
+        {/**
+         * Analytics charts
+         */}
+        <Route path="/your-app-usage" exact component={Analytics} />
         {/**
          * Page not found screen
          */}

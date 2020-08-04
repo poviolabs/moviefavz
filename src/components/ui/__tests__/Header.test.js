@@ -7,6 +7,6 @@ describe('<Header />', () => {
   it('Renders the Component', () => {
     const props = {};
     const container = render(<Header {...props} />);
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

@@ -10,6 +10,6 @@ describe('<UserDropdown />', () => {
       onLogout: jest.fn(),
     };
     const container = render(<UserDropdown {...props} />);
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

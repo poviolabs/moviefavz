@@ -10,6 +10,6 @@ describe('<Emoji />', () => {
       label: 'Label text',
     };
     const container = render(<Emoji {...props} />);
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

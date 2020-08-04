@@ -16,6 +16,6 @@ describe('<MovieCard />', () => {
       onFavoritePress: jest.fn(),
     };
     const container = render(<MovieCard {...props} />);
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

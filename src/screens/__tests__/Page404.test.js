@@ -7,6 +7,6 @@ describe('<Page404 />', () => {
   it('Renders the Component', () => {
     const props = {};
     const container = render(<Page404 {...props} />);
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

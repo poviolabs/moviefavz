@@ -1,12 +1,12 @@
 import React from 'react';
 import { render } from '../../utils/testUtils';
 
-import Favorites from '../Favorites';
+import Analytics from '../Analytics';
 
-describe('<Favorites />', () => {
+describe('<Analytics />', () => {
   it('Renders the Component', () => {
     const props = {};
-    const container = render(<Favorites {...props} />);
+    const container = render(<Analytics {...props} />);
     expect(container).toMatchSnapshot();
   });
 });
