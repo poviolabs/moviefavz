@@ -9,6 +9,6 @@ describe('<MoviesGrid />', () => {
       movies: [],
     };
     const container = render(<MoviesGrid {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

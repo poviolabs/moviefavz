@@ -7,6 +7,6 @@ describe('<LoginButton />', () => {
   it('Renders the Component', () => {
     const props = {};
     const container = render(<LoginButton {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

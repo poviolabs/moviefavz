@@ -7,6 +7,6 @@ describe('<Favorites />', () => {
   it('Renders the Component', () => {
     const props = {};
     const container = render(<Favorites {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

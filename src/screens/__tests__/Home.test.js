@@ -7,6 +7,6 @@ describe('<Home />', () => {
   it('Renders the Component', () => {
     const props = {};
     const container = render(<Home {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

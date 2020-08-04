@@ -10,6 +10,6 @@ describe('<MovieImage />', () => {
       poster: 'N/A',
     };
     const container = render(<MovieImage {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

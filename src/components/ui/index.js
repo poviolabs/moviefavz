@@ -10,3 +10,4 @@ export { default as UserDropdown } from './UserDropdown';
 export { default as LoginButton } from './LoginButton';
 export { default as HomeButton } from './HomeButton';
 export { default as Loader } from './Loader';
+export { default as UsageChart } from './UsageChart';

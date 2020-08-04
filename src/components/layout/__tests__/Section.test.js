@@ -11,6 +11,6 @@ describe('<Section />', () => {
         <p>Some child element</p>
       </Section>
     );
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

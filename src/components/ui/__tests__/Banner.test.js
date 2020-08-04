@@ -9,6 +9,6 @@ describe('<Banner />', () => {
       image: '',
     };
     const container = render(<Banner {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

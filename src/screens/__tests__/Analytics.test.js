@@ -7,6 +7,6 @@ describe('<Analytics />', () => {
   it('Renders the Component', () => {
     const props = {};
     const container = render(<Analytics {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

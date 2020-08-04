@@ -10,6 +10,6 @@ describe('<MovieRating />', () => {
       value: '8.6',
     };
     const container = render(<MovieRating {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

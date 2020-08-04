@@ -11,6 +11,6 @@ describe('<AuthModal />', () => {
       onConfirm: jest.fn(),
     };
     const container = render(<AuthModal {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

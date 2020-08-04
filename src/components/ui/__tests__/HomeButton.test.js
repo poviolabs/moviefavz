@@ -7,6 +7,6 @@ describe('<HomeButton />', () => {
   it('Renders the Component', () => {
     const props = {};
     const container = render(<HomeButton {...props} />);
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
