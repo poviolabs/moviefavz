@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "45340ac6c705ed75369de3cbcad37ed0",
+    "revision": "8b79067774b5c7faf08e28ea5fea45eb",
     "url": "https://poviolabs.github.io/moviefavz/index.html"
   },
   {
-    "revision": "5b07b3ee72b5e02a57c8",
-    "url": "https://poviolabs.github.io/moviefavz/static/css/main.ea527d92.chunk.css"
+    "revision": "0b9d02a5d5e8243afd25",
+    "url": "https://poviolabs.github.io/moviefavz/static/css/main.4a2d10d2.chunk.css"
   },
   {
     "revision": "bb06140f1ed3ee00a116",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://poviolabs.github.io/moviefavz/static/js/2.0eb82fae.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5b07b3ee72b5e02a57c8",
-    "url": "https://poviolabs.github.io/moviefavz/static/js/main.5c9691b9.chunk.js"
+    "revision": "0b9d02a5d5e8243afd25",
+    "url": "https://poviolabs.github.io/moviefavz/static/js/main.920b6bc8.chunk.js"
   },
   {
     "revision": "1e20fd7783ffa84fa002",

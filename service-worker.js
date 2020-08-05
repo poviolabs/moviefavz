@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://poviolabs.github.io/moviefavz/precache-manifest.81c94f720e06108cba4feb7e9931db1d.js"
+  "https://poviolabs.github.io/moviefavz/precache-manifest.b50bbd2fb5b1f73144578c4f52fb6740.js"
 );
 
 self.addEventListener('message', (event) => {
