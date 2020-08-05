@@ -29,25 +29,25 @@ class MoviesStore {
   }
 
   get latestFindingsPreviews() {
-    return Object.keys(this.singleMoviesById)
-      .filter((movieId) => this.latestFindings.includes(movieId))
-      .reduce((arr, movieId) => {
-        const { Title, Poster, Type, Year, imdbID } = this.singleMoviesById[
-          movieId
-        ];
-        return [{ Title, Poster, Type, Year, imdbID }, ...arr];
-      }, []);
+    return this.latestFindings.reduce((arr, movieId) => {
+      if (!this.singleMoviesById[movieId]) {
+        return arr;
+      }
+      const { Title, Poster, Type, Year, imdbID } = this.singleMoviesById[
+        movieId
+      ];
+      return [...arr, { Title, Poster, Type, Year, imdbID }];
+    }, []);
   }
 
   get favoritesPreviews() {
-    return Object.keys(this.singleMoviesById)
-      .filter((movieId) => this.favorites.includes(movieId))
-      .reduce((arr, movieId) => {
-        const { Title, Poster, Type, Year, imdbID } = this.singleMoviesById[
-          movieId
-        ];
-        return [...arr, { Title, Poster, Type, Year, imdbID }];
-      }, []);
+    return this.favorites.reduce((arr, { id }) => {
+      if (!this.singleMoviesById[id]) {
+        return arr;
+      }
+      const { Title, Poster, Type, Year, imdbID } = this.singleMoviesById[id];
+      return [...arr, { Title, Poster, Type, Year, imdbID }];
+    }, []);
   }
 
   searchMovies = async ({ query }) => {
@@ -150,13 +150,16 @@ class MoviesStore {
   };
 
   toggleFavoriteMovie = ({ id, user }) => {
-    if (this.favorites.includes(id)) {
-      this.favorites = [...this.favorites.filter((movieId) => movieId !== id)];
+    if (this.favorites.some(({ id: favId }) => favId === id)) {
+      this.favorites = [
+        ...this.favorites.filter(({ id: favId }) => favId !== id),
+      ];
     } else {
       if (!Object.keys(this.singleMoviesById).includes(id)) {
         this.fetchMovieById({ id });
       }
-      this.favorites = [id, ...this.favorites];
+      const timestamp = Date.now();
+      this.favorites = [{ id, timestamp }, ...this.favorites];
     }
     localStorage.setItem(
       `${LOCAL_STORAGE.favorites}_${user}`,
@@ -179,8 +182,17 @@ class MoviesStore {
     );
     this.favorites = JSON.parse(favorites) || [];
     this.latestFindings = JSON.parse(latestFindings) || [];
-    [...this.favorites, ...this.latestFindings].forEach((movieId) => {
+    this.latestFindings.forEach((movieId) => {
       this.fetchMovieById({ id: movieId });
+    });
+    this.favorites.forEach(({ id }) => {
+      if (!id) {
+        // Something was modified/changed in unexpected way in localStorage,
+        // to prevent app from breaking, clear localStorage
+        localStorage.clear();
+        return;
+      }
+      this.fetchMovieById({ id });
     });
   };
 }
@@ -208,4 +220,4 @@ decorate(MoviesStore, {
   removeErrors: action,
 });
 
-export default MoviesStore;
+export default new MoviesStore();

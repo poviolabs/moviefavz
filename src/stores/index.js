@@ -1,9 +1,11 @@
 import React from 'react';
 
-import MoviesStore from './MoviesStore';
+import moviesStore from './MoviesStore';
+import analyticsStore from './AnalyticsStore';
 
 const storesContext = React.createContext({
-  moviesStore: new MoviesStore(),
+  moviesStore,
+  analyticsStore,
 });
 
 export default storesContext;

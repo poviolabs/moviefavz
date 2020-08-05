@@ -46,6 +46,11 @@ const MoviesGrid = ({ movies = [] }) => {
     }
   }, [selectedMovie, moviesStore]);
 
+  const isFavorited = React.useMemo(
+    () => (movieId) => moviesStore.favorites.some(({ id }) => movieId === id),
+    [moviesStore.favorites]
+  );
+
   return (
     <>
       <Grid minColWidth={{ sm: '160px', lg: '215px' }}>
@@ -54,7 +59,7 @@ const MoviesGrid = ({ movies = [] }) => {
             key={movie.imdbID}
             onPress={handleMoviePress}
             onFavoritePress={handleFavoritesPress}
-            favorited={moviesStore.favorites.includes(movie.imdbID)}
+            favorited={isFavorited(movie.imdbID)}
             {...movie}
           />
         ))}
@@ -63,7 +68,7 @@ const MoviesGrid = ({ movies = [] }) => {
         loading={moviesStore.state === STATE_TYPES.pending}
         visible={!!selectedMovie}
         movie={moviesStore.singleMoviesById[selectedMovie]}
-        favorited={moviesStore.favorites.includes(selectedMovie)}
+        favorited={isFavorited(selectedMovie)}
         onClose={() => setSelectedMovie(null)}
         onFavoritesPress={handleFavoritesPress}
       />

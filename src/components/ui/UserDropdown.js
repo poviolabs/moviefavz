@@ -16,6 +16,12 @@ const StyledDropdownLink = styled.a`
   }
 `;
 
+const StyledUsername = styled.span`
+  @media screen and (max-width: 360px) {
+    display: none;
+  }
+`;
+
 const UserDropdown = ({ user, onLogout }) => {
   return (
     <Dropdown
@@ -35,13 +41,15 @@ const UserDropdown = ({ user, onLogout }) => {
         className="ant-dropdown-link"
         onClick={(e) => e.preventDefault()}
       >
-        <Space>
+        <Space size="small">
           <Avatar
             size="small"
             src={user.picture}
             icon={!user.picture ? <UserOutlined /> : null}
           />
-          <span>Hi, {user.given_name || user.nickname}</span>
+          <StyledUsername>
+            Hi, {user.given_name || user.nickname}
+          </StyledUsername>
           <DownOutlined />
         </Space>
       </StyledDropdownLink>

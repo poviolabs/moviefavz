@@ -1,3 +1,5 @@
+import dateFunctions from './dateFunctions';
+
 const groupArr = (data, size) => {
   const group = [];
   for (let i = 0, j = 0; i < data.length; i++) {
@@ -10,4 +12,22 @@ const groupArr = (data, size) => {
   return group;
 };
 
-export default { groupArr };
+const groupByDay = (data, key = 'timestamp') => {
+  const groupedByKey = data.reduce((obj, item) => {
+    const timestamp = item[key];
+    const day = dateFunctions.getUnixDay(timestamp);
+
+    if (Object.prototype.hasOwnProperty.call(obj, day)) {
+      obj[day].value += 1;
+    } else {
+      obj[day] = {
+        value: 1,
+        timestamp,
+      };
+    }
+    return obj;
+  }, {});
+  return Object.values(groupedByKey);
+};
+
+export default { groupArr, groupByDay };
