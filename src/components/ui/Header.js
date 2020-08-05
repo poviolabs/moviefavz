@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { Layout, Space, Button } from 'antd';
 
 import UserDropdown from './UserDropdown';
+import { ENVIRONMENT } from '../../constants';
 
 const StyledHeader = styled(Layout.Header)`
   background-color: ${({ theme }) => theme.colors.light};
@@ -52,7 +53,10 @@ const Header = () => {
                 <StyledLink to="/your-favz" exact>
                   Your Favz
                 </StyledLink>
-                <UserDropdown user={user} onLogout={logout} />
+                <UserDropdown
+                  user={user}
+                  onLogout={() => logout({ returnTo: ENVIRONMENT.appBaseUrl })}
+                />
               </>
             ) : (
               <Button size="middle" danger onClick={loginWithRedirect}>
