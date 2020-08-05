@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import dayjs from 'dayjs';
 
-import styled, { useTheme } from 'styled-components';
-
 import {
   ResponsiveContainer,
   LineChart,
@@ -16,28 +14,29 @@ import {
   CartesianGrid,
 } from 'recharts';
 
-const StyledLineChart = styled(LineChart)`
-  svg {
-    // overflow: visible;
-  }
-`;
+const UsageChart = ({ data, labels, dataKeys, colors }) => {
+  const label = React.useMemo(
+    () => (key) => {
+      return labels[dataKeys.indexOf(key)] || key;
+    },
+    [labels, dataKeys]
+  );
 
-const UsageChart = ({ data }) => {
-  const { colors } = useTheme();
-
-  const legendFormatter = () => 'Number of added favz';
-
-  const tooltipContentFormatter = (value) => {
-    return [value, 'Num of added favz'];
+  const legendFormatter = (value) => {
+    return label(value);
   };
 
-  const tooltipLabelFormatter = (name) => {
-    return dayjs(name).format('D. MMM');
+  const tooltipContentFormatter = (value, name) => {
+    return [value, label(name)];
+  };
+
+  const tooltipLabelFormatter = (value) => {
+    return dayjs(value).format('D. MMM');
   };
 
   return (
     <ResponsiveContainer width="100%" aspect={2} debounce={100}>
-      <StyledLineChart data={data}>
+      <LineChart data={data}>
         <Legend
           iconSize={16}
           formatter={legendFormatter}
@@ -55,14 +54,17 @@ const UsageChart = ({ data }) => {
           formatter={tooltipContentFormatter}
           isAnimationActive={false}
         />
-        <Line
-          stroke={colors.primary}
-          strokeWidth={2}
-          type="monotone"
-          dataKey="value"
-        />
+        {dataKeys.map((key, i) => (
+          <Line
+            key={key}
+            dataKey={key}
+            stroke={colors[i]}
+            strokeWidth={2}
+            type="monotone"
+          />
+        ))}
         <CartesianGrid horizontal={false} strokeOpacity={0.5} />
-      </StyledLineChart>
+      </LineChart>
     </ResponsiveContainer>
   );
 };
@@ -74,6 +76,9 @@ UsageChart.propTypes = {
       value: PropTypes.number,
     })
   ),
+  dataKeys: PropTypes.arrayOf(PropTypes.string),
+  labels: PropTypes.arrayOf(PropTypes.string),
+  colors: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default UsageChart;

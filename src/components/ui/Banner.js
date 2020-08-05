@@ -49,6 +49,7 @@ const StyledSearch = styled(Search)`
 
 const Banner = ({ image }) => {
   const { moviesStore } = useStores();
+
   const handleSearch = (query) => {
     if (!query) {
       moviesStore.clearSearchResults();

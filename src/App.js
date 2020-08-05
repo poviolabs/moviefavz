@@ -21,7 +21,7 @@ const StyledLayout = styled(Layout)`
 
 const App = () => {
   const { user, isLoading, isAuthenticated } = useAuth0();
-  const { moviesStore } = useStores();
+  const { moviesStore, analyticsStore } = useStores();
 
   React.useEffect(() => {
     /**
@@ -30,6 +30,7 @@ const App = () => {
      */
     if (isAuthenticated && !isLoading) {
       moviesStore.initializeFromStorage({ user: user.sub });
+      analyticsStore.setUser({ user: user.sub });
     }
     // eslint-disable-next-line
   }, [isAuthenticated, isLoading, user]);

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-const getUnixDay = (timestamp) => {
+const getUnixDay = (timestamp = Date.now()) => {
   return dayjs(timestamp).startOf('date').valueOf();
 };
 

@@ -4,6 +4,8 @@ import { fetchSearchMovies, fetchMovieById } from '../api/omdbApiService';
 import { apiValidations } from '../utils';
 import { STATE_TYPES, LOCAL_STORAGE } from '../constants';
 
+import analyticsStore from './AnalyticsStore';
+
 class MoviesStore {
   movies = [];
   singleMoviesById = {};
@@ -63,6 +65,7 @@ class MoviesStore {
         query,
       });
       if (apiValidations.validResponse(status)) {
+        analyticsStore.incrementSearchCount();
         runInAction(() => {
           this.query = query;
           this.searchResults = data;
